@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
     res.json(users);
 });
 
-const PORT = 3001;
+const PORT = +process.env.USER_SERVICE_PORT || 3001;
 
 app.listen(PORT, () => {
     console.log(`User Service running on port ${PORT}`);

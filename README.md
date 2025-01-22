@@ -8,7 +8,7 @@ docker build -t user-service:<version> user-service/Dockerfile .
 
 ### Build:
 ```sh
-docker build -t <service-name>:<version> <service-name>/Dockerfile .
+docker build -t <service-name>:<version> -f <service-name>/Dockerfile .
 ```
 
 ### Run

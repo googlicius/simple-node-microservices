@@ -1,0 +1,63 @@
+kong:
+  name: api-gw
+  env:
+    database: "off"
+  ingressController:
+    enabled: true
+    ingressClass: "kong"
+  admin:
+    tls:
+      parameters: []
+  proxy:
+    retries: 5
+    connect_timeout: 5000
+    read_timeout: 10000
+    write_timeout: 10000
+  paths:
+  - path: /users
+    pathType: Prefix
+    name: user-service
+    port: 3001
+  - path: /catalog
+    pathType: Prefix
+    name: catalog-service
+    port: 3002
+  - path: /orders
+    pathType: Prefix
+    name: order-service
+    port: 3003
+
+services:
+- name: catalog
+  image: catalog-service:v1.2
+  port: 3002
+  replicaCount: 1
+  env:
+  - key: CATALOG_SERVICE_PORT
+    value: "3002"
+  service:
+    type: ClusterIP
+    internalPort: 3002
+    externalPort: 3002
+- name: order
+  image: order-service:v1.4
+  port: 3003
+  replicaCount: 1
+  env:
+  - key: ORDER_SERVICE_PORT
+    value: "3003"
+  service:
+    type: ClusterIP
+    internalPort: 3003
+    externalPort: 3003
+- name: user
+  image: user-service:v1.7
+  port: 3001
+  replicaCount: 1
+  env:
+  - key: USER_SERVICE_PORT
+    value: "3001"
+  service:
+    type: ClusterIP
+    internalPort: 3001
+    externalPort: 3001

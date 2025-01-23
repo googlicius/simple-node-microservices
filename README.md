@@ -1,12 +1,6 @@
 # Simple NodeJS Microservices
 
-### User Service
-Build:
-```sh
-docker build -t user-service:<version> user-service/Dockerfile .
-```
-
-### Build:
+### Build
 ```sh
 docker build -t <service-name>:<version> -f <service-name>/Dockerfile .
 ```
@@ -16,7 +10,7 @@ docker build -t <service-name>:<version> -f <service-name>/Dockerfile .
 docker run -p <HOST_PORT>:<TARGET_PORT> <service-name>:<version> 
 ```
 
-## Inspect image files
+### Inspect image files
 ```sh
 docker run -it --entrypoint sh <service-name>:<version>
 ```

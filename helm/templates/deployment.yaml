@@ -1,0 +1,35 @@
+{{- $dot := . }}
+{{- range $value := .Values.services }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $value.name }}-deployment
+  labels:
+    chart: "{{ $dot.Chart.Name }}"
+    version: "{{ $dot.Chart.Version }}"
+spec:
+  replicas: {{ $value.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ $value.name }}
+      chart: "{{ $dot.Chart.Name }}"
+      version: "{{ $dot.Chart.Version }}"
+  template:
+    metadata:
+      labels:
+        app: {{ $value.name }}
+        chart: "{{ $dot.Chart.Name }}"
+        version: "{{ $dot.Chart.Version }}"
+    spec:
+      containers:
+      - name: {{ $value.name }}
+        image: {{ $value.image }}
+        ports:
+        - containerPort: {{ $value.port }}
+        env:
+        {{- range $value.env }}
+        - name: {{ .key }}
+          value: {{ .value | quote }}
+        {{- end }}
+{{- end }}

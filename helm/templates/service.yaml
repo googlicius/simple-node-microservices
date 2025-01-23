@@ -1,0 +1,23 @@
+{{- $dot := . }}
+{{- range $value := .Values.services }}
+{{- if $value.service }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $value.name }}-service
+  labels:
+    app: {{ $value.name }}
+    chart: "{{ $dot.Chart.Name }}"
+    version: "{{ $dot.Chart.Version }}"
+spec:
+  ports:
+  - port: {{ $value.service.externalPort }}
+    protocol: TCP
+    targetPort: {{ $value.service.internalPort }}
+  selector:
+    app: {{ $value.name }}
+    chart: "{{ $dot.Chart.Name }}"
+    version: "{{ $dot.Chart.Version }}"
+{{- end }}
+{{- end }}

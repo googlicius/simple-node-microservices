@@ -1,0 +1,4 @@
+# Install
+helm install simple-nodejs-microservices ./helm
+# Upgrade
+helm upgrade simple-nodejs-microservices ./helm

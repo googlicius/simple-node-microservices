@@ -29,7 +29,7 @@ kong:
 
 services:
 - name: catalog
-  image: catalog-service:v1.2
+  image: catalog-service:v1.5
   port: 3002
   replicaCount: 1
   env:
@@ -40,7 +40,7 @@ services:
     internalPort: 3002
     externalPort: 3002
 - name: order
-  image: order-service:v1.4
+  image: order-service:v1.6
   port: 3003
   replicaCount: 1
   env:

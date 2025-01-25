@@ -6,8 +6,9 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY catalog-service/ .
+COPY catalog-service/ ./catalog-service/
+COPY utils/ ./utils/
 
 EXPOSE 3002
 
-CMD ["node", "index.js"]
+CMD ["node", "catalog-service/index.js"]

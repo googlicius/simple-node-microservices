@@ -6,6 +6,7 @@ COPY package*.json ./
 
 RUN npm ci
 
-COPY order-service/ .
+COPY order-service/ ./order-service/
+COPY utils/ ./utils/
 
-CMD ["node", "index.js"]
+CMD ["node", "order-service/index.js"]

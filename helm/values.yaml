@@ -61,3 +61,11 @@ services:
     type: ClusterIP
     internalPort: 3001
     externalPort: 3001
+- name: wikimedia-producer
+  image: wikimedia-producer:v1.1
+  port: 3005
+  replicaCount: 1
+- name: wikimedia-consumer
+  image: wikimedia-consumer:v1.0
+  port: 3006
+  replicaCount: 2

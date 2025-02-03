@@ -10,3 +10,4 @@ data:
   ORDER_SERVICE_HOST: "order-service"
   ORDER_SERVICE_PORT: "3003"
   RABBITMQ_URL: "amqp://admin:master123@host.docker.internal:5672"
+  KAFKA_BROKERS: "host.docker.internal:29092,host.docker.internal:29093,host.docker.internal:29094"
